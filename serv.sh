@@ -1,0 +1,1 @@
+cd httpserver && rm -f go.mod && rm -f main && go mod init main.go && go build main.go && go run main.go

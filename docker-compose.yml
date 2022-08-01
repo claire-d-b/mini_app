@@ -1,0 +1,25 @@
+version: "3.9" # optional since v1.27.0
+services:
+  database:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: clairedb
+      POSTGRES_PASSWORD: example
+      POSTGRES_DB: backend
+    volumes:
+      - logvolume02:/var/lib/postgresql/data
+    # entrypoint:
+    #   - pg_ctl start -D /var/lib/postgresql/data
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8080"
+    volumes:
+      - .:/code
+      - logvolume01:/var/log
+volumes:
+  logvolume01: {}
+  logvolume02: {}
